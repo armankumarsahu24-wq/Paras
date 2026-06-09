@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PARAS CINEMATIC</title>
+
+<style>
+html,body{
+margin:0;
+padding:0;
+overflow:hidden;
+background:black;
+font-family:Arial, sans-serif;
+}
+
+/* ===== BACKGROUND ===== */
+#hall{
+position:absolute;
+width:100%;
+height:100%;
+object-fit:cover;
+opacity:0;
+transform:scale(1.08);
+filter:contrast(1.15) saturate(1.2) brightness(0.8);
+transition:opacity 3s ease, transform 8s ease;
+}
+
+/* soft vignette */
+#vignette{
+position:absolute;
+width:100%;
+height:100%;
+background:radial-gradient(circle, transparent 40%, rgba(0,0,0,0.85));
+pointer-events:none;
+}
+
+/* ===== NAME STYLE ===== */
+.name{
+position:absolute;
+width:100%;
+text-align:center;
+color:#ffffff;
+font-size:42px;
+letter-spacing:6px;
+opacity:0;
+transition:2s;
+}
+
+#n1{top:35%}
+#n2{top:45%}
+#n3{top:55%}
+
+/* ===== PARAS ===== */
+#paras{
+position:absolute;
+top:40%;
+width:100%;
+text-align:center;
+font-size:110px;
+color:#d4af37; /* elegant gold */
+opacity:0;
+letter-spacing:10px;
+transform:scale(0.95);
+transition:2.5s ease;
+text-shadow:0 0 25px rgba(212,175,55,0.4);
+}
+
+/* logo */
+#logo{
+position:absolute;
+bottom:50px;
+left:50%;
+transform:translateX(-50%);
+width:220px;
+opacity:0;
+transition:2.5s;
+filter:drop-shadow(0 0 15px rgba(212,175,55,0.4));
+}
+
+/* subtle fade overlay */
+#fade{
+position:absolute;
+width:100%;
+height:100%;
+background:black;
+opacity:1;
+transition:4s;
+}
+</style>
+</head>
+
+<body>
+
+<audio id="music" src="the_mountain-wedding-522480.mp3"></audio>
+
+<div id="fade"></div>
+
+<img id="hall" src="hall.jpg">
+<div id="vignette"></div>
+
+<div id="n1" class="name">PRADEEP</div>
+<div id="n2" class="name">ARMAN</div>
+<div id="n3" class="name">RASMITA</div>
+
+<div id="paras">PARAS</div>
+
+<img id="logo" src="paras-logo.png">
+
+<script>
+const music = document.getElementById("music");
+
+function step1(){
+document.getElementById("fade").style.opacity = 0;
+document.getElementById("hall").style.opacity = 1;
+}
+
+function step2(){
+document.getElementById("n1").style.opacity = 1;
+}
+
+function step3(){
+document.getElementById("n2").style.opacity = 1;
+}
+
+function step4(){
+document.getElementById("n3").style.opacity = 1;
+}
+
+function step5(){
+document.getElementById("n1").style.opacity = 0;
+document.getElementById("n2").style.opacity = 0;
+document.getElementById("n3").style.opacity = 0;
+
+document.getElementById("paras").style.opacity = 1;
+document.getElementById("paras").style.transform = "scale(1)";
+}
+
+function step6(){
+document.getElementById("logo").style.opacity = 1;
+}
+
+function start(){
+music.play();
+
+setTimeout(step1, 500);
+setTimeout(step2, 2000);
+setTimeout(step3, 4000);
+setTimeout(step4, 6000);
+setTimeout(step5, 8500);
+setTimeout(step6, 11000);
+}
+
+window.addEventListener("click", start, {once:true});
+</script>
+
+</body>
+</html>
